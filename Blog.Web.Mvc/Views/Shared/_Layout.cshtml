@@ -1,49 +1,56 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Blog.Web.Mvc</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Blog.Web.Mvc.styles.css" asp-append-version="true" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Revolve - Personal Magazine blog Template</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!--Favicon-->
+	<link rel="shortcut icon" href="/template/images/favicon.ico" type="image/x-icon">
+	<!-- THEME CSS
+	================================================== -->
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="/template/plugins/bootstrap/css/bootstrap.min.css">
+	<!-- Themify -->
+	<link rel="stylesheet" href="/template/plugins/themify/css/themify-icons.css">
+	<link rel="stylesheet" href="/template/plugins/slick-carousel/slick-theme.css">
+	<link rel="stylesheet" href="/template/plugins/slick-carousel/slick.css">
+	<!-- Slick Carousel -->
+	<link rel="stylesheet" href="/template/plugins/owl-carousel/owl.carousel.min.css">
+	<link rel="stylesheet" href="/template/plugins/owl-carousel/owl.theme.default.min.css">
+	<link rel="stylesheet" href="/template/plugins/magnific-popup/magnific-popup.css">
+	<!-- manin stylesheet -->
+	<link rel="stylesheet" href="/template/css/style.css">
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Blog.Web.Mvc</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - Blog.Web.Mvc - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    <partial name="_Header" />
+
+    @RenderBody()
+
+    <partial name="_Footer" />
+
+
+    <section class="js">
+		<!-- THEME JAVASCRIPT FILES
+		================================================== -->
+		<!-- initialize jQuery Library -->
+		<script src="/template/plugins/jquery/jquery.js"></script>
+		<!-- Bootstrap jQuery -->
+		<script src="/template/plugins/bootstrap/js/bootstrap.min.js"></script>
+		<script src="/template/plugins/bootstrap/js/popper.min.js"></script>
+		<!-- Owl caeousel -->
+		<script src="/template/plugins/owl-carousel/owl.carousel.min.js"></script>
+		<script src="/template/plugins/slick-carousel/slick.min.js"></script>
+		<script src="/template/plugins/magnific-popup/magnific-popup.js"></script>
+		<!-- Instagram Feed Js -->
+		<script src="/template/plugins/instafeed-js/instafeed.min.js"></script>
+		<!-- Google Map -->
+		<script src="/template/maps/api/js_key_AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw.js"></script>
+		<script src="/template/plugins/google-map/gmap.js"></script>
+		<!-- main js -->
+		<script src="/template/js/custom.js"></script>
+	</section>
+
 </body>
 </html>
