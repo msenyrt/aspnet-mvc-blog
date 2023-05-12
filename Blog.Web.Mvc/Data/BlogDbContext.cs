@@ -24,13 +24,7 @@ public class BlogDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // FluentAPI ile bir entity modelinin özellikleri ayarlanabilir.
-        modelBuilder.Entity<Category>().Property("Id").UseIdentityColumn();
-        modelBuilder.Entity<Category>().Property("Name").IsRequired().HasMaxLength(100);
-
-        // Seed: Örnek test verilerinin eklenmesi
-        //modelBuilder.Entity<Category>().HasData(new Category() { Id = 1, Name = "TEST"});
-        //DbSeeder.SeedTestData(modelBuilder);
+        DbSeeder.Seed(modelBuilder);
 
         base.OnModelCreating(modelBuilder);
     }
