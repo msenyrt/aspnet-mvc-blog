@@ -7,14 +7,14 @@ public class User
     [Key]
     public int Id { get; set; }
 
-    [Required, Column(TypeName = "varchar(200)")]
+    [Required, Column(TypeName = "nvarchar(100)")]
+    public string Name { get; set; }
+
+    [Required, Column(TypeName = "nvarchar(200)")]
     public string Email { get; set; }
 
     [Required, Column(TypeName = "nvarchar(100)")]
     public string Password { get; set; }
-
-    [Required, Column(TypeName = "nvarchar(100)")]
-    public string Name { get; set; }
 
     [Column(TypeName = "nvarchar(100)")]
     public string? City { get; set; }

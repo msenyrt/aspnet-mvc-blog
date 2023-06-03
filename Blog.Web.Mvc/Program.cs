@@ -1,4 +1,5 @@
 using Blog.Web.Mvc.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,15 +8,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<BlogDbContext>(o =>
 {
-
     string connectionString = builder.Configuration.GetConnectionString("Default");
     o.UseSqlServer(connectionString);
 });
 
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(o => {
+        o.Cookie.Name = "AuthenticationName";
+        o.LoginPath = "/Auth/Login";
+        o.AccessDeniedPath = "/Auth/AccessDenied";
+    });
 
 var app = builder.Build();
-
-
 
 using (var scope = app.Services.CreateScope())
 {
@@ -42,6 +46,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

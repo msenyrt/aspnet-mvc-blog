@@ -19,7 +19,7 @@ namespace Blog.Web.Mvc.Data
 
                
                 new() {
-                    Id = 1,
+                    Id = 2,
                     Email = "kullanici@blog.com",
                     Name = "kullanici",
                     Password = "321",
