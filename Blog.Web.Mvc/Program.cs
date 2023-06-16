@@ -1,4 +1,5 @@
-using Blog.Web.Mvc.Data;
+using Blog.Data;
+using Blog.Business;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,37 +7,27 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<BlogDbContext>(o =>
-{
-    string connectionString = builder.Configuration.GetConnectionString("Default");
-    o.UseSqlServer(connectionString);
-});
+
+builder.Services.AddBusinessServices(builder.Configuration);
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(o => {
         o.Cookie.Name = "AuthenticationName";
-        o.LoginPath = "/Auth/Login";
-        o.AccessDeniedPath = "/Auth/AccessDenied";
+        o.LoginPath = "/auth/login";
+        o.AccessDeniedPath = "/auth/accessDenied";
     });
 
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-
-    var context = scope.ServiceProvider.GetRequiredService<BlogDbContext>();
-
-    
-    //context.Database.EnsureDeleted();
-
-    
-    context.Database.EnsureCreated();
+    ServiceExtensions.EnsureDeletedAndCreated(scope);
 }
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
+    app.UseExceptionHandler("/home/error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }

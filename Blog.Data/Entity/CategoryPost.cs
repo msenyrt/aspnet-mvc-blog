@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Blog.Web.Mvc.Data.Entity;
+namespace Blog.Data.Entity;
 
 public class CategoryPost
 {

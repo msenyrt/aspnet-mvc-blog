@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Blog.Web.Mvc.Data.Entity;
+namespace Blog.Data.Entity;
+
 public class User
 {
     [Key]
@@ -13,11 +14,11 @@ public class User
     [Required, Column(TypeName = "nvarchar(200)")]
     public string Email { get; set; }
 
-    [Required, Column(TypeName = "nvarchar(100)")]
-    public string Password { get; set; }
-
     [Column(TypeName = "nvarchar(100)")]
     public string? City { get; set; }
+
+    [Required, Column(TypeName = "nvarchar(100)")]
+    public string Password { get; set; }
 
     [Column(TypeName = "varchar(20)")]
     public string? Phone { get; set; }

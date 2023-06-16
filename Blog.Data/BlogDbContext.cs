@@ -1,14 +1,10 @@
-﻿using Blog.Web.Mvc.Data.Entity;
+﻿using Blog.Data.Entity;
 using Microsoft.EntityFrameworkCore;
 
-namespace Blog.Web.Mvc.Data;
+namespace Blog.Data;
 
 public class BlogDbContext : DbContext
 {
-    public BlogDbContext(DbContextOptions<BlogDbContext> options) : base(options)
-    {
-    }
-
     public DbSet<Post> Posts { get; set; }
     public DbSet<PostComment> PostComments { get; set; }
     public DbSet<User> Users { get; set; }
@@ -16,7 +12,6 @@ public class BlogDbContext : DbContext
     public DbSet<PostImage> PostImages { get; set; }
     public DbSet<Setting> Settings { get; set; }
     public DbSet<Category> Categories { get; set; }
-    public DbSet<CategoryPost> CategoryPosts { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder builder)
     {
@@ -28,8 +23,7 @@ public class BlogDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        DbSeeder.Seed(modelBuilder);
-
+        modelBuilder.Entity<Post>().HasMany(p => p.Categories).WithMany(p => p.Posts);
         base.OnModelCreating(modelBuilder);
     }
 
