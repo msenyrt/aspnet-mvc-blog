@@ -13,12 +13,16 @@ public class BlogDbContext : DbContext
     public DbSet<Setting> Settings { get; set; }
     public DbSet<Category> Categories { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder builder)
-    {
-        string connectionString = "Server=(localdb)\\MSSQLLocalDb; Database=BlogDb;";
-        builder.UseSqlServer(connectionString);
+    //protected override void OnConfiguring(DbContextOptionsBuilder builder)
+    //{
+    //    string connectionString = "Server=(localdb)\\MSSQLLocalDb; Database=BlogDb;";
+    //    builder.UseSqlServer(connectionString);
 
-        base.OnConfiguring(builder);
+    //    base.OnConfiguring(builder);
+    //}
+
+    public BlogDbContext(DbContextOptions<BlogDbContext> options) : base(options)
+    {
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

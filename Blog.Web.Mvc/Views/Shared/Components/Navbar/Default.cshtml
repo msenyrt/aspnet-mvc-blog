@@ -25,13 +25,13 @@
 									Categories
 								</a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-									@foreach (Category c in Model.Categories)
+									@foreach (CategoryDto c in Model.Categories)
 									{
 										<a class="dropdown-item" asp-route="CategorySlug" asp-route-slug="@c.Slug">@c.Name</a>
 									}
 								</div>
 							</li>
-							@foreach(Page p in Model.Pages){
+							@foreach(PageDto p in Model.Pages){
 							<li class="nav-item"><a asp-controller="home" asp-action="index" class="nav-link">@p.Title</a></li>
 							}
 							

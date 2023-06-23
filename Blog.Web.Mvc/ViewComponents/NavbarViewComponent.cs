@@ -1,5 +1,5 @@
 ﻿using Blog.Business.Services;
-using Blog.Data.Entity;
+using Blog.Business.DtoData;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.Web.Mvc.ViewComponents;

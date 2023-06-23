@@ -1,5 +1,5 @@
 ﻿using Blog.Data;
-using Blog.Data.Entity;
+using Blog.Business.DtoData;
 using Microsoft.EntityFrameworkCore;
 using Blog.Business.Services.Abstract;
 
@@ -14,27 +14,27 @@ namespace Blog.Business.Services
             _db = db;
         }
 
-        public List<Post> GetAll()
+        public List<PostDto> GetAll()
         {
-            return _db.Posts.Include(p => p.Categories).Include(p => p.User).ToList();                
+            return _db.Posts.Include(p => p.Categories).Include(p => p.User).ToList().PostListToDtoList();                
         }
 
-        public Post GetById(int id)
+        public PostDto GetById(int id)
         {
             return _db.Posts
                 .Include(p => p.Categories)
                 .Include(p => p.User)
                 .Where(p => p.Id == id)
-                .FirstOrDefault();
+                .FirstOrDefault().PostToDto();
         }
 
-        public void Insert(Post post)
+        public void Insert(PostDto post)
         {
-            _db.Posts.Add(post);
+            _db.Posts.Add(post.DtoToPost());
             _db.SaveChanges();
         }
 
-        public void Update(Post post)
+        public void Update(PostDto post)
         {
             var oldPost = _db.Posts.FirstOrDefault(p => p.Id == post.Id);
             if (oldPost != null)
