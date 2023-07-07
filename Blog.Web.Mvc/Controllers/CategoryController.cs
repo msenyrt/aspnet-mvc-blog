@@ -1,4 +1,5 @@
 ﻿using Blog.Business.Services;
+using Blog.Business.Services.Abstract;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.Web.Mvc.Controllers
@@ -6,7 +7,7 @@ namespace Blog.Web.Mvc.Controllers
     public class CategoryController : Controller
     {
         private readonly PostService _ps;
-        private readonly CategoryService _cs;
+        private readonly ICategoryService _cs;
 
         public CategoryController(PostService ps, CategoryService cs)
         {

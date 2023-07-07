@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Blog.Data;
 using Blog.Business.Services;
+using Blog.Business.Services.Abstract;
 using Microsoft.EntityFrameworkCore;
 
 namespace Blog.Business
@@ -17,10 +18,10 @@ namespace Blog.Business
                 o.UseSqlServer(connectionString);
             });
             services.AddTransient<PostService>();
-            services.AddTransient<CategoryService>();
+            services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<PageService>();
             services.AddTransient<SettingService>();
-            services.AddTransient<UserService>();
+            services.AddTransient<IUserService, UserService>();
             return services;
         }
 

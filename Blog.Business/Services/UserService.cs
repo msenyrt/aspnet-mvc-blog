@@ -65,7 +65,17 @@ namespace Blog.Business.Services
 						new Claim("City",user.City),
 						new Claim(ClaimTypes.MobilePhone, user.Phone)
 					};
-			var identity = new ClaimsIdentity(claims, "Cookies");
+
+            if (!string.IsNullOrEmpty(user.Role))
+            {
+                string[] roles = user.Role.Substring(0, user.Role.Length - 1).Split(',');
+                foreach (var role in roles)
+                {
+                    claims.Add(new Claim(ClaimTypes.Role, role));
+                }
+            }
+
+            var identity = new ClaimsIdentity(claims, "Cookies");
 
 			return new ClaimsPrincipal(identity);
 		}

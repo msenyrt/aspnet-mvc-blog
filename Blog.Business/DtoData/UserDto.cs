@@ -22,4 +22,6 @@ public class UserDto
 
     [Column(TypeName = "varchar(20)")]
     public string? Phone { get; set; }
+
+    public string? Role { get; set; }
 }

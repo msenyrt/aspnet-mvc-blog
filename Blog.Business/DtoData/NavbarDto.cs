@@ -2,6 +2,6 @@
 
 public class NavbarDto
 {
-	public List<CategoryDto> Categories { get; set; }
+	public IEnumerable<CategoryDto> Categories { get; set; }
 	public List<PageDto> Pages { get; set; }
 }

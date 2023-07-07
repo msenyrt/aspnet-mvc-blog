@@ -1,5 +1,4 @@
-﻿using Blog.Data.Entity;
-using Blog.Business.DtoData.Abstract;
+﻿using Blog.Business.DtoData.Abstract;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -10,7 +9,7 @@ public class PostDto : AuditEntity
 	[Key]
 	public int Id { get; set; }	
 	public int UserId { get; set; }
-	public User? User { get; set; }
+	public UserDto User { get; set; }
 
 	[Required, Column(TypeName = "nvarchar(200)")]
 	public string Title { get; set; }
@@ -19,5 +18,5 @@ public class PostDto : AuditEntity
 	public string Content { get; set; }
 
 	// Navigation Properties
-	public List<CategoryDto> Categories { get; set; }
+	public List<CategoryDto>? Categories { get; set; }
 }

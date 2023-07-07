@@ -1,5 +1,5 @@
 ﻿using Blog.Business.DtoData;
-using Blog.Business.Services;
+using Blog.Business.Services.Abstract;
 using Blog.Web.Mvc.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
@@ -9,9 +9,9 @@ namespace Blog.Web.Mvc.Controllers
 {
     public class AuthController : Controller
     {
-        private readonly UserService _us;
+        private readonly IUserService _us;
 
-        public AuthController(UserService us)
+        public AuthController(IUserService us)
         {
             _us = us;
         }
@@ -21,6 +21,7 @@ namespace Blog.Web.Mvc.Controllers
         [HttpPost]
         public IActionResult Register(RegisterViewModel model)
         {
+            if (HttpContext.User.Identity.IsAuthenticated) return Redirect("/");
             if (ModelState.IsValid)
             {
                 _us.Insert(new UserDto { Name = model.Name, Email = model.Email, Password = model.Password, Phone = model.Phone != null ? model.Phone : "", City = model.City != null ? model.City : "" });
@@ -38,6 +39,7 @@ namespace Blog.Web.Mvc.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
+            if (HttpContext.User.Identity.IsAuthenticated) return Redirect("/");
             if (ModelState.IsValid)
             {
                 var user = _us.GetByEmailPassword(model.Email, model.Password);
